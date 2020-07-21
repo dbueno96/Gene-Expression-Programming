@@ -28,7 +28,7 @@ def main():
         elif args.env== 'all' or args.env=='ALL' or args.env=='All':
             
             conf.env_list = np.array([envs[1:]])
-            for env in env_list[0]:
+            for env in conf.env_list[0]:
                 conf.env_name= env
                 conf.env_list= np.delete(conf.env_list, 0,1)
 
