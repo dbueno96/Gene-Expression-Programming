@@ -35,9 +35,8 @@ class BaseAlgorithm():
 
 
     def save_progress(self, generation): 
-        print('Saving progress...')
         try: 
-            np.save(self.save_dir+'env_list.npy', self.conf.env_list)
+            np.save(self.save_dir+'../env_list.npy', self.conf.env_list)
         except AttributeError:
             pass
         
@@ -45,10 +44,13 @@ class BaseAlgorithm():
         np.save(self.save_dir+'tails.npy', self.population_tails)
         np.save(self.save_dir+'max_fitness.npy', self.max_fitness)
         np.save(self.save_dir+'gen_index.npy', np.array([[generation, self.solution_index,self.played_steps]]))
-        print('Done!')
 
     def load_progress(self): 
         print('Loading progress')
+        try: 
+            self.conf.env_list=np.load(self.save_dir+'../env_list.npy')
+        except IOError: 
+            pass
         self.population_heads= np.load(self.save_dir+'heads.npy')
         self.population_tails= np.load(self.save_dir+'tails.npy')
         self.max_fitness=np.load(self.save_dir+'max_fitness.npy')

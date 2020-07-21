@@ -50,7 +50,7 @@ class EvoAlgorithm(BaseAlgorithm):
         self.mark_as_unchecked(selected_index)
 
     def compute_steps_to_play(self): 
-        missing_steps=500
+        missing_steps=200
         dif = self.max_steps - self.played_steps
         if dif < missing_steps:
             missing_steps=dif
@@ -126,20 +126,21 @@ class EvoAlgorithm(BaseAlgorithm):
     
 
     def run(self, initial=0): 
-        try:
-            with tqdm(self.max_steps, total=self.max_steps, initial=self.played_steps, unit=' steps' ) as bar:
-                gen=0
-                while(1):
-                    self.gen_steps=0
-                    selected_index= self.selection()
-                    self.mutate(selected_index)
-                    bar.update(self.gen_steps)
-                    
-                    gen+=1
-                    if self.played_steps >=self.max_steps:
-                        self.save_solution()
-                        break 
-                self.show_result()
-        except KeyboardInterrupt: 
-            self.save_progress(gen)
+
+        with tqdm(self.max_steps, total=self.max_steps, initial=self.played_steps, unit=' steps' ) as bar:
+            gen=0
+            while(1):
+                self.gen_steps=0
+                selected_index= self.selection()
+                self.mutate(selected_index)
+                bar.update(self.gen_steps)
+                
+                gen+=1
+                if self.played_steps >=self.max_steps:
+                    self.save_solution()
+                    break 
+            # self.show_result()
+                # tqdm.write(str(gen))        
+                if gen % self.conf.save_freq == 0: 
+                    self.save_progress(gen)
 
