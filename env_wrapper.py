@@ -1,6 +1,7 @@
 import gym
 from gym import wrappers
 import time
+from tqdm import tqdm
 
 class GymEnv(): 
 
@@ -21,13 +22,14 @@ class GymEnv():
 
     def env_step(self, action):
         lives_before= self.lives 
-        # self.env.render()
-        # time.sleep(0.05)
+        self.env.render()
+        time.sleep(0.05)
         self.observation, reward, self.terminal, self.info= self.env.step(action)
         self.reward +=reward
         lives_now= self.lives
         if lives_now < lives_before: 
             self.terminal=True
+            tqdm.write('yaper')
         return reward
         
 
