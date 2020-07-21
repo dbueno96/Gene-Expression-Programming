@@ -21,6 +21,7 @@ def main():
     args = process_args()
     if valid_args(args):
         if args.restore: 
+            algorithm = EvoAlgorithm(conf)
             generation= algorithm.load_progress()
             algorithm.run(generation)
     
