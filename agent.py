@@ -37,35 +37,29 @@ class Agent():
     
     def play(self, limit_steps=999):
         self.env.new_game()
+        self.random_play()
         self.played_steps=0
         t=0
-        static_check= [75,125,175]
-        static=True
+        static_check= [50,75,100]
         while not self.env.terminal:
             action= self.choose_action(self.head, self.tail, self.env.observation)
             self.total_reward+= self.env.env_step(action)
             t+=1
-            
-            if t in static_check:
-                static= static and self.env.is_static()
-
-            if self.env.terminal or t > limit_steps or (static and t >=175) : 
-                tqdm.write(str(limit_steps))
-                tqdm.write(str(self.env.terminal))
-                tqdm.write(str(t))
-                tqdm.write('\tFinished after {} timesteps'.format(t))
+            if self.env.terminal or t > limit_steps  : 
+                # tqdm.write(str(limit_steps))
+                # tqdm.write(str(self.env.terminal))
+                # tqdm.write(str(t))
+                # tqdm.write('\tFinished after {} timesteps and scored {}'.format(t, self.total_reward))
                 self.played_steps=t
                 break
+        self.env.close_env()
         return self.total_reward
 
 
-    def random_play(self, steps=100): 
+    def random_play(self, steps=10): 
         for t in range(steps): 
-            self.env.env.render()
             action= self.env.env.action_space.sample()
             o,r,d,info= self.env.env.step(action) 
             if self.env.terminal: 
                 # print('Finished after {} timesteps'.format(t))
                 break
-
-        self.env.close_env()
