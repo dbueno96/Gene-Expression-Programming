@@ -1,4 +1,13 @@
 import os
+from utils.env_list import envs
+
+def valid_args(args): 
+    if args.env in envs or args.env=='All' or  args.env=='ALL':
+        if args.steps >0 :
+            return True
+        else:
+            return False
+
 
 
 def create_save_dir(foldername='saved'): 
