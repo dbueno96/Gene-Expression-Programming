@@ -36,6 +36,11 @@ class BaseAlgorithm():
 
     def save_progress(self, generation): 
         print('Saving progress...')
+        try: 
+            np.save(self.save_dir+'env_list.npy', self.conf.env_list)
+        except AttributeError:
+            pass
+        
         np.save(self.save_dir+'heads.npy', self.population_heads)
         np.save(self.save_dir+'tails.npy', self.population_tails)
         np.save(self.save_dir+'max_fitness.npy', self.max_fitness)
