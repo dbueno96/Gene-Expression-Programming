@@ -1,4 +1,5 @@
 import os
+import argparse
 from utils.env_list import envs
 
 def valid_args(args): 
@@ -8,7 +9,14 @@ def valid_args(args):
         else:
             return False
 
-
+def process_args(): 
+    parser=argparse.ArgumentParser(description='Gene Expression Programming Based Algorithm')
+    parser.add_argument('--restore',default=False, type=bool, help='Restore previuosly interrupted process')
+    parser.add_argument('--steps', default=2000, type=int, help='Run algorithm for this amount of timesteps on environment(s)')
+    parser.add_argument('--env', default=None, type=str, help='Run algorithm on this gym atari ram environments')
+    parser.add_argument('--list-envs', default=False, type=bool, help='List all atari gym ram environments')
+    parser.add_argument('--view-result', default=False, type=bool, help='View result on especified gym atari ram environment')
+    return parser.parse_args()
 
 def create_save_dir(foldername='saved'): 
     path='./{}'.format(foldername)  
