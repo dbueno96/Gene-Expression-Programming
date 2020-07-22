@@ -49,6 +49,7 @@ class BaseAlgorithm():
         print('Loading progress')
         try: 
             self.conf.env_list=np.load(self.save_dir+'../env_list.npy')
+            self.conf.env_name= self.conf.env_list[0][0]
         except IOError: 
             pass
         self.population_heads= np.load(self.save_dir+'heads.npy')
@@ -56,6 +57,6 @@ class BaseAlgorithm():
         self.max_fitness=np.load(self.save_dir+'max_fitness.npy')
         gen_solution_steps=np.load(self.save_dir+'gen_index.npy')
         gen, self.solution_index, self.played_steps= gen_solution_steps[0][0], gen_solution_steps[0][1], gen_solution_steps[0][2]
-        remove_loaded_files(self.save_dir)
+        # remove_loaded_files(self.save_dir)
         print('Done!')
         return gen

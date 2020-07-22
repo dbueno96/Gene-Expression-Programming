@@ -126,10 +126,10 @@ class EvoAlgorithm(BaseAlgorithm):
     
 
     def run(self, initial=0): 
-
-        with tqdm(self.max_steps, total=self.max_steps, initial=self.played_steps, unit=' steps' ) as bar:
-            gen=0
+        with tqdm(self.max_steps, total=self.max_steps, initial=self.played_steps, unit=' steps', leave=False, desc=str(self.conf.env_name)) as bar:
+            gen=initial
             while(1):
+                # tqdm.write(str(gen))
                 self.gen_steps=0
                 selected_index= self.selection()
                 self.mutate(selected_index)
@@ -138,9 +138,10 @@ class EvoAlgorithm(BaseAlgorithm):
                 gen+=1
                 if self.played_steps >=self.max_steps:
                     self.save_solution()
+                    # tqdm.write('played: '+str(self.played_steps))
+                    # tqdm.write('max: '+str(self.max_steps))
                     break 
             # self.show_result()
-                # tqdm.write(str(gen))        
                 if gen % self.conf.save_freq == 0: 
                     self.save_progress(gen)
 

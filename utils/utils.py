@@ -33,3 +33,5 @@ def remove_loaded_files(dir):
     files= [f for f in os.listdir(dir) if f.endswith('.npy')] 
     for f in files:
         os.remove(dir+f)
+    if os.path.exists(dir+'../env_list.npy'):
+        os.remove(dir+'../env_list.npy')
