@@ -23,9 +23,7 @@ def main():
                 with tqdm(range(62),initial=(62-len(algorithm.conf.env_list[0])+1), total=62, unit=' envs', desc='Envs Progress' ) as bar:
                     algorithm.run(generation)
                     conf.env_list= np.delete(algorithm.conf.env_list, 0,1)
-                    # print(algorithm.conf.env_list)
                     for env in algorithm.conf.env_list[0]:
-                        # tqdm.write(env)
                         conf.env_name=env
                         conf.max_timesteps=args.steps
                         algorithm= EvoAlgorithm(conf)
