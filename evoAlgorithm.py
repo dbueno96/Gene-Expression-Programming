@@ -138,10 +138,14 @@ class EvoAlgorithm(BaseAlgorithm):
                 gen+=1
                 if self.played_steps >=self.max_steps:
                     self.save_solution()
-                    # tqdm.write('played: '+str(self.played_steps))
-                    # tqdm.write('max: '+str(self.max_steps))
                     break 
-            # self.show_result()
                 if gen % self.conf.save_freq == 0: 
                     self.save_progress(gen)
 
+    def solution(self, episodes=10, render=False):
+        agent = Agent(self.conf)
+        agent.head, agent.tail = self.load_solution()
+        for i in range(episodes):
+            agent.total_reward=0
+            score=agent.play(1e5, render=render)
+            print('Episode finished with {} points'.format(score))

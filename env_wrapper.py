@@ -19,10 +19,11 @@ class GymEnv():
         return self.info['ale.lives']
 
 
-    def env_step(self, action):
+    def env_step(self, action, render=False):
         lives_before= self.lives 
-        # self.env.render()
-        # time.sleep(0.05)
+        if render:
+            self.env.render()
+            time.sleep(0.005)
         self.observation, reward, self.terminal, self.info= self.env.step(action)
         self.reward +=reward
         lives_now= self.lives
