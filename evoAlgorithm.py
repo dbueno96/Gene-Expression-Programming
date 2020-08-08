@@ -145,7 +145,15 @@ class EvoAlgorithm(BaseAlgorithm):
     def solution(self, episodes=10, render=False):
         agent = Agent(self.conf)
         agent.head, agent.tail = self.load_solution()
+        scores=[]
         for i in range(episodes):
             agent.total_reward=0
             score=agent.play(1e5, render=render)
+            scores.append(score)
             print('Episode finished with {} points'.format(score))
+        
+        self.solution_scores= np.array(scores)
+        self.solution_scores_mean= np.mean(self.solution_scores)
+
+        print('Scores after {} episodes: {}'.format(episodes, self.solution_scores))
+        print('Mean solution scores after {} episodes'.format(self.solution_scores_mean))
