@@ -8,6 +8,11 @@ def valid_args(args):
             return True
         else:
             return False
+    elif args.list_envs or args.list_envs: 
+        return True
+    
+    else: 
+        return False
 
 def process_args(): 
     parser=argparse.ArgumentParser(description='Gene Expression Programming Based Algorithm')

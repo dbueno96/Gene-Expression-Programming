@@ -9,7 +9,6 @@ import sys
 
 
 def main():
-
     args = process_args()
     if valid_args(args):
         if args.list_envs: 
@@ -71,8 +70,8 @@ def main():
                     create_save_dir(conf.save_dir)        
                     create_folder_in_saved(conf.env_name+'/')
                     algorithm.run()
-
-
+    else: 
+        print('Invalid Argument')
 
 if __name__=='__main__':
     main()
