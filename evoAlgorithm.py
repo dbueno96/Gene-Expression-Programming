@@ -17,7 +17,7 @@ class EvoAlgorithm(BaseAlgorithm):
         self.obs_size= config.obs_size
         self.ops_size= config.ops_size
         self.max_steps=config.max_timesteps
-        self.steps_per_episode
+        self.steps_per_episode=config.steps_per_episode
         self.gen_steps=0           
 
     
