@@ -1,7 +1,7 @@
 import os
 import argparse
 from utils.env_list import envs
-
+from config import Config
 def valid_args(args): 
     if args.env in envs or args.env=='All' or  args.env=='ALL':
         if args.steps >0 :
@@ -17,7 +17,7 @@ def valid_args(args):
 def process_args(): 
     parser=argparse.ArgumentParser(description='Gene Expression Programming Based Algorithm')
     parser.add_argument('--restore',default=False, type=bool, help='Restore previuosly interrupted process')
-    parser.add_argument('--steps', default=2000, type=int, help='Run algorithm for this amount of timesteps on environment(s)')
+    parser.add_argument('--steps', default=Config.max_timesteps, type=int, help='Run algorithm for this amount of timesteps on environment(s)')
     parser.add_argument('--env', default=None, type=str, help='Run algorithm on this gym atari ram environments')
     parser.add_argument('--list_envs', default=False, type=bool, help='List all atari gym ram environments')
     parser.add_argument('--result', default=False, type=bool, help='View result on especified gym atari ram environment')

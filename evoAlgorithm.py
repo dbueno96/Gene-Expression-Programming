@@ -17,6 +17,7 @@ class EvoAlgorithm(BaseAlgorithm):
         self.obs_size= config.obs_size
         self.ops_size= config.ops_size
         self.max_steps=config.max_timesteps
+        self.steps_per_episode
         self.gen_steps=0           
 
     
@@ -50,7 +51,7 @@ class EvoAlgorithm(BaseAlgorithm):
         self.mark_as_unchecked(selected_index)
 
     def compute_steps_to_play(self): 
-        missing_steps=200
+        missing_steps= self.steps_per_episode
         dif = self.max_steps - self.played_steps
         if dif < missing_steps:
             missing_steps=dif
@@ -148,7 +149,7 @@ class EvoAlgorithm(BaseAlgorithm):
         scores=[]
         for i in range(episodes):
             agent.total_reward=0
-            score=agent.play(1e5, render=render)
+            score=agent.play(2*1e5, render=render)
             scores.append(score)
             print('Episode {} finished with {} points'.format(i+1,score))
         
