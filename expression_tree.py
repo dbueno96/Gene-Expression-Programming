@@ -20,7 +20,7 @@ class TreeNode():
 
         self.set_depth()
     
-    def set_leaf_value(val):
+    def set_leaf_value(self,val):
         self.function=val
 
     def set_depth(self): 
