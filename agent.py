@@ -1,7 +1,7 @@
 from env_wrapper import GymEnv
 from expression_tree import TreeNode
 import math
-from tqdm import tqdm
+# from tqdm import tqdm
 
 class Agent():
 
@@ -58,7 +58,6 @@ class Agent():
 
     def random_play(self, steps=10): 
         action=1
-        tqdm.write(str(action))
         self.env.env.step(action)
         for t in range(steps): 
             action= self.env.env.action_space.sample()
