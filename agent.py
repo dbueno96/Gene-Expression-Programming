@@ -35,7 +35,7 @@ class Agent():
         action= self.truncate_action(self.expr_tree.evaluate_tree())
         return action
     
-    def play(self, limit_steps=999, render=False):
+    def play(self, limit_steps=999, render=True ):
         self.env.new_game()
         self.random_play()
         self.played_steps=0
@@ -57,6 +57,9 @@ class Agent():
 
 
     def random_play(self, steps=10): 
+        action=1
+        tqdm.write(str(action))
+        self.env.env.step(action)
         for t in range(steps): 
             action= self.env.env.action_space.sample()
             o,r,d,info= self.env.env.step(action) 
