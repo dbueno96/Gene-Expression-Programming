@@ -24,4 +24,4 @@ class Config():
     operators=OPERATORS
 
     save_dir= './saved/'
-    save_freq= 50 #in generations
+    save_freq= 100 #in generations

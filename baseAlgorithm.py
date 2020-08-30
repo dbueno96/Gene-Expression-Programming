@@ -50,6 +50,7 @@ class BaseAlgorithm():
         try: 
             self.conf.env_list=np.load(self.save_dir+'../env_list.npy')
             self.conf.env_name= self.conf.env_list[0][0]
+            self.save_dir='./saved/'+ str(self.conf.env_name) + '/'
         except IOError: 
             pass
         self.population_heads= np.load(self.save_dir+'heads.npy')
