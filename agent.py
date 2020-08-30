@@ -35,12 +35,11 @@ class Agent():
         action= self.truncate_action(self.expr_tree.evaluate_tree())
         return action
     
-    def play(self, limit_steps=999, render=True ):
+    def play(self, limit_steps=999, render=False ):
         self.env.new_game()
         self.random_play()
         self.played_steps=0
         t=0
-        static_check= [50,75,100]
         while not self.env.terminal:
             action= self.choose_action(self.head, self.tail, self.env.observation)
             self.total_reward+= self.env.env_step(action, render=render)
